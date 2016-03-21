@@ -5,5 +5,6 @@ use_frameworks!
 
 target 'Instagram' do
     pod 'Parse’, :git => 'https://github.com/ParsePlatform/Parse-SDK-iOS-OSX.git'
+    pod ‘ParseUI’
 end
 

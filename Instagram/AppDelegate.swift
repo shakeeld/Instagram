@@ -24,8 +24,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
         )
         if PFUser.currentUser() != nil {
+                print("There is a current user")
+                
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewControllerWithIdentifier("InstafeedViewController")
+                window?.rootViewController = vc
             // if there is a logged in user then load the home view controller
         }
+        
+        /*
+        
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let getPicsNavigationController = storyboard.instantiateViewControllerWithIdentifier("instaNavigationController") as! UINavigationController
+        let getPicsViewController = getPicsNavigationController.topViewController as! InstafeedViewController
+*/
+        
+        NSNotificationCenter.defaultCenter().addObserverForName("userDidLogoutNotification", object: nil, queue: NSOperationQueue.mainQueue()) { (NSNotification) -> Void in
+            print("User has logged out")
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateInitialViewController()
+            self.window?.rootViewController = vc
+        }
+
         
         return true
     }
